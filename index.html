@@ -59,6 +59,13 @@
       gap: 16px;
     }
 
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
     .brand {
       font-weight: 700;
       color: var(--text);
@@ -69,6 +76,29 @@
       flex-wrap: wrap;
       gap: 14px;
       font-size: 14px;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .lang-btn {
+      border: 0;
+      background: transparent;
+      padding: 8px 12px;
+      font-size: 13px;
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    .lang-btn.active {
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
     }
 
     .hero {
@@ -177,6 +207,22 @@
       padding-bottom: 16px;
     }
 
+    [data-lang] { display: none; }
+    html[lang="zh-CN"] [data-lang="zh"],
+    html[lang="en"] [data-lang="en"] {
+      display: inline;
+    }
+
+    html[lang="zh-CN"] [data-lang-block="zh"],
+    html[lang="en"] [data-lang-block="en"] {
+      display: block;
+    }
+
+    html[lang="zh-CN"] [data-lang-list="zh"],
+    html[lang="en"] [data-lang-list="en"] {
+      display: list-item;
+    }
+
     @media (max-width: 760px) {
       .hero {
         grid-template-columns: 1fr;
@@ -194,21 +240,32 @@
         align-items: flex-start;
         flex-direction: column;
       }
+      .topbar-right {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
 <body>
   <div class="topbar">
     <div class="topbar-inner">
-      <div class="brand">你的名字</div>
-      <nav class="nav">
-        <a href="#about">About</a>
-        <a href="#news">News</a>
-        <a href="#projects">Projects</a>
-        <a href="#publications">Publications</a>
-        <a href="#awards">Awards</a>
-        <a href="#contact">Contact</a>
-      </nav>
+      <div class="brand">Jiacheng Yang</div>
+      <div class="topbar-right">
+        <nav class="nav">
+          <a href="#about"><span data-lang="zh">关于</span><span data-lang="en">About</span></a>
+          <a href="#news"><span data-lang="zh">动态</span><span data-lang="en">News</span></a>
+          <a href="#projects"><span data-lang="zh">项目</span><span data-lang="en">Projects</span></a>
+          <a href="#publications"><span data-lang="zh">论文</span><span data-lang="en">Publications</span></a>
+          <a href="#awards"><span data-lang="zh">荣誉</span><span data-lang="en">Awards</span></a>
+          <a href="#contact"><span data-lang="zh">联系</span><span data-lang="en">Contact</span></a>
+        </nav>
+        <div class="lang-switch" aria-label="Language Switcher">
+          <button class="lang-btn active" type="button" onclick="setLang('zh-CN')">中文</button>
+          <button class="lang-btn" type="button" onclick="setLang('en')">EN</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -218,14 +275,18 @@
         <img class="avatar" src="https://via.placeholder.com/600x600.png?text=Your+Photo" alt="Profile Photo" />
       </div>
       <div>
-        <h1 class="name">你的名字</h1>
+        <h1 class="name">Jiacheng Yang</h1>
         <div class="subtitle">
-          职位 / 研究方向 / 学校或公司<br />
-          例如：硕士研究生，研究方向为计算机视觉、长尾学习与噪声标签学习
+          <span data-lang-block="zh">硕士研究生 / 计算机视觉、长尾学习与噪声标签学习</span>
+          <span data-lang-block="en">M.S. Student / Computer Vision, Long-Tailed Learning, and Learning with Noisy Labels</span>
         </div>
-        <p>
-          这里写一段 3–5 句的个人简介。建议包括你的研究兴趣、当前所在机构、你正在做的方向，以及你希望与他人合作的主题。
-          如果你不是学术方向，也可以改成个人介绍 + 项目经历 + 技能方向。
+        <p data-lang-block="zh">
+          这里写一段中文个人简介。建议包括你的研究兴趣、当前所在机构、正在进行的方向，以及你希望合作的主题。
+          你可以把这段替换成自己的正式介绍。
+        </p>
+        <p data-lang-block="en">
+          Write a short English bio here. You may include your current affiliation, research interests, ongoing work,
+          and topics you are open to collaborating on.
         </p>
         <div class="links">
           <a class="chip" href="mailto:your_email@example.com">Email</a>
@@ -238,45 +299,64 @@
     </section>
 
     <section class="section" id="about">
-      <h2>About Me</h2>
-      <p>
+      <h2><span data-lang="zh">关于我</span><span data-lang="en">About Me</span></h2>
+      <p data-lang-block="zh">
         我目前在 <strong>某某学校 / 某某公司</strong> 学习或工作，主要关注 <strong>研究方向 A、研究方向 B、研究方向 C</strong>。
-        我的兴趣包括长尾学习、噪声标签学习、视觉识别、模型鲁棒性与公平性等。这里也可以补充教育背景、实习经历，或者一两句更个性化的介绍。
+        我的兴趣包括长尾学习、噪声标签学习、视觉识别、模型鲁棒性与公平性等。
+      </p>
+      <p data-lang-block="en">
+        I am currently studying or working at <strong>Your University / Company</strong>, with research interests in
+        <strong>Topic A, Topic B, and Topic C</strong>. My recent work focuses on long-tailed learning, noisy-label learning,
+        visual recognition, robustness, and fairness.
       </p>
     </section>
 
     <section class="section" id="news">
-      <h2>Recent News</h2>
+      <h2><span data-lang="zh">最新动态</span><span data-lang="en">Recent News</span></h2>
       <ul class="news-list">
-        <li><strong>[2026.04]</strong> 在这里填写最新动态，例如论文被接收、参加会议、加入实验室或发布项目。</li>
-        <li><strong>[2026.02]</strong> 完成某个项目或获得某项奖励。</li>
-        <li><strong>[2025.12]</strong> 发布个人主页初版。</li>
+        <li data-lang-list="zh"><strong>[2026.04]</strong> 在这里填写最新动态，例如论文被接收、参加会议、加入实验室或发布项目。</li>
+        <li data-lang-list="en"><strong>[2026.04]</strong> Add your latest update here, such as a paper acceptance, conference participation, or a released project.</li>
+        <li data-lang-list="zh"><strong>[2026.02]</strong> 完成某个项目或获得某项奖励。</li>
+        <li data-lang-list="en"><strong>[2026.02]</strong> Finished a project or received an award.</li>
+        <li data-lang-list="zh"><strong>[2025.12]</strong> 发布个人主页初版。</li>
+        <li data-lang-list="en"><strong>[2025.12]</strong> Launched the first version of this homepage.</li>
       </ul>
     </section>
 
     <section class="section" id="projects">
-      <h2>Selected Projects</h2>
+      <h2><span data-lang="zh">精选项目</span><span data-lang="en">Selected Projects</span></h2>
       <ul class="project-list">
-        <li>
+        <li data-lang-list="zh">
+          <span class="pub-title">项目名称 1</span>
+          <span class="tag">开源</span><br />
+          一句话介绍这个项目解决什么问题、你做了什么、用了哪些技术。
+          <a href="#">[代码]</a>
+          <a href="#">[演示]</a>
+        </li>
+        <li data-lang-list="en">
           <span class="pub-title">Project Name 1</span>
           <span class="tag">Open Source</span><br />
-          一句话介绍这个项目解决什么问题、你做了什么、用了哪些技术。 
+          Briefly describe the problem, your contribution, and the technical highlights.
           <a href="#">[Code]</a>
           <a href="#">[Demo]</a>
         </li>
-        <li>
-          <span class="pub-title">Project Name 2</span><br />
+        <li data-lang-list="zh">
+          <span class="pub-title">项目名称 2</span><br />
           可以放课程项目、比赛项目、研究项目或工程作品集。
+        </li>
+        <li data-lang-list="en">
+          <span class="pub-title">Project Name 2</span><br />
+          You can list course projects, competition entries, research projects, or engineering work.
         </li>
       </ul>
     </section>
 
     <section class="section" id="publications">
-      <h2>Publications</h2>
+      <h2><span data-lang="zh">论文发表</span><span data-lang="en">Publications</span></h2>
       <ul class="pub-list">
         <li>
           <span class="pub-title">Paper Title 1</span><br />
-          Author A, <strong>Your Name</strong>, Author C<br />
+          Author A, <strong>Jiacheng Yang</strong>, Author C<br />
           <em>Conference / Journal, 2026</em>
           <a href="#">[Paper]</a>
           <a href="#">[Code]</a>
@@ -284,7 +364,7 @@
         </li>
         <li>
           <span class="pub-title">Paper Title 2</span><br />
-          <strong>Your Name</strong>, Author B<br />
+          <strong>Jiacheng Yang</strong>, Author B<br />
           <em>Conference / Journal, 2025</em>
           <a href="#">[Paper]</a>
         </li>
@@ -292,28 +372,59 @@
     </section>
 
     <section class="section" id="awards">
-      <h2>Honors & Awards</h2>
+      <h2><span data-lang="zh">荣誉与奖项</span><span data-lang="en">Honors & Awards</span></h2>
       <ul class="award-list">
-        <li><strong>2025</strong> 某某奖学金 / 比赛奖项 / 荣誉称号</li>
-        <li><strong>2024</strong> 某某竞赛二等奖</li>
+        <li data-lang-list="zh"><strong>2025</strong> 某某奖学金 / 比赛奖项 / 荣誉称号</li>
+        <li data-lang-list="en"><strong>2025</strong> Scholarship / Competition Award / Honorary Title</li>
+        <li data-lang-list="zh"><strong>2024</strong> 某某竞赛二等奖</li>
+        <li data-lang-list="en"><strong>2024</strong> Second Prize in a Competition</li>
       </ul>
     </section>
 
     <section class="section" id="contact">
-      <h2>Contact</h2>
-      <p>
+      <h2><span data-lang="zh">联系方式</span><span data-lang="en">Contact</span></h2>
+      <p data-lang-block="zh">
         Email: <a href="mailto:your_email@example.com">your_email@example.com</a><br />
         GitHub: <a href="https://github.com/yourname" target="_blank" rel="noopener">github.com/yourname</a><br />
         Location: City, Country
       </p>
-      <p class="muted">
+      <p data-lang-block="en">
+        Email: <a href="mailto:your_email@example.com">your_email@example.com</a><br />
+        GitHub: <a href="https://github.com/yourname" target="_blank" rel="noopener">github.com/yourname</a><br />
+        Location: City, Country
+      </p>
+      <p class="muted" data-lang-block="zh">
         欢迎就研究合作、项目交流、实习或工作机会与我联系。
+      </p>
+      <p class="muted" data-lang-block="en">
+        Feel free to reach out for research collaboration, project discussion, internships, or job opportunities.
       </p>
     </section>
 
     <div class="footer">
-      © 2026 你的名字. Built with GitHub Pages.
+      <span data-lang="zh">© 2026 Jiacheng Yang. 基于 GitHub Pages 构建。</span>
+      <span data-lang="en">© 2026 Jiacheng Yang. Built with GitHub Pages.</span>
     </div>
   </main>
+
+  <script>
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      localStorage.setItem('homepage-lang', lang);
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = Array.from(document.querySelectorAll('.lang-btn')).find(btn =>
+        (lang === 'zh-CN' && btn.textContent.includes('中文')) ||
+        (lang === 'en' && btn.textContent.includes('EN'))
+      );
+      if (activeBtn) activeBtn.classList.add('active');
+      document.title = lang === 'zh-CN' ? '你的名字 | 个人主页' : 'Your Name | Personal Homepage';
+    }
+
+    (function initLang() {
+      const savedLang = localStorage.getItem('homepage-lang');
+      const browserLang = navigator.language && navigator.language.toLowerCase().startsWith('zh') ? 'zh-CN' : 'en';
+      setLang(savedLang || browserLang);
+    })();
+  </script>
 </body>
 </html>

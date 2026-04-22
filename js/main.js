@@ -294,22 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 window.addEventListener('load', () => {
     const loader = document.getElementById('loader');
-    if (!loader) return;
-
-    const loaderPercent = document.getElementById('loaderPercent');
-    let progress = 0;
-
-    const timer = setInterval(() => {
-        progress += 10;
-        if (loaderPercent) {
-            loaderPercent.textContent = `${Math.min(progress, 100)}%`;
-        }
-
-        if (progress >= 100) {
-            clearInterval(timer);
-            setTimeout(() => {
-                loader.classList.add('hidden');
-            }, 300);
-        }
-    }, 80);
+    if (loader) {
+        loader.classList.add('hidden');
+    }
 });

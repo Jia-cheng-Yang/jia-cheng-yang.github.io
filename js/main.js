@@ -9,9 +9,7 @@ const AppState = {
 document.addEventListener('DOMContentLoaded', () => {
     initializeApp();
 });
-document.querySelectorAll('.stat-number').forEach(stat => {
-    stat.textContent = stat.getAttribute('data-count') || '0';
-});
+
 function initializeApp() {
     loadPreferences();
     initLanguage();
@@ -22,6 +20,7 @@ function initializeApp() {
     initMobileMenu();
     updateLanguageUI();
     updateThemeUI();
+    animateStats();
     AppState.isLoaded = true;
 }
 
@@ -293,28 +292,38 @@ function generateParticles() {
 document.addEventListener('DOMContentLoaded', () => {
     generateParticles();
 });
+
 function animateStats() {
     const statNumbers = document.querySelectorAll('.stat-number');
+
     statNumbers.forEach(stat => {
-        const target = parseInt(stat.getAttribute('data-count') || 0, 10);
+        const target = parseInt(stat.dataset.count || '0', 10);
+        if (Number.isNaN(target)) {
+            stat.textContent = '0';
+            return;
+        }
+
         let current = 0;
-        const step = Math.max(1, Math.ceil(target / 30));
+        const duration = 900;
+        const steps = 30;
+        const increment = target / steps;
+        const interval = duration / steps;
+
+        stat.textContent = '0';
 
         const timer = setInterval(() => {
-            current += step;
+            current += increment;
+
             if (current >= target) {
-                stat.textContent = target;
+                stat.textContent = String(target);
                 clearInterval(timer);
             } else {
-                stat.textContent = current;
+                stat.textContent = String(Math.floor(current));
             }
-        }, 30);
+        }, interval);
     });
 }
 
-window.addEventListener('load', () => {
-    animateStats();
-});
 window.addEventListener('load', () => {
     const loader = document.getElementById('loader');
     if (loader) {

@@ -9,7 +9,9 @@ const AppState = {
 document.addEventListener('DOMContentLoaded', () => {
     initializeApp();
 });
-
+document.querySelectorAll('.stat-number').forEach(stat => {
+    stat.textContent = stat.getAttribute('data-count') || '0';
+});
 function initializeApp() {
     loadPreferences();
     initLanguage();

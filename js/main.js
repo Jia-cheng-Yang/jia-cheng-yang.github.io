@@ -293,7 +293,28 @@ function generateParticles() {
 document.addEventListener('DOMContentLoaded', () => {
     generateParticles();
 });
+function animateStats() {
+    const statNumbers = document.querySelectorAll('.stat-number');
+    statNumbers.forEach(stat => {
+        const target = parseInt(stat.getAttribute('data-count') || 0, 10);
+        let current = 0;
+        const step = Math.max(1, Math.ceil(target / 30));
 
+        const timer = setInterval(() => {
+            current += step;
+            if (current >= target) {
+                stat.textContent = target;
+                clearInterval(timer);
+            } else {
+                stat.textContent = current;
+            }
+        }, 30);
+    });
+}
+
+window.addEventListener('load', () => {
+    animateStats();
+});
 window.addEventListener('load', () => {
     const loader = document.getElementById('loader');
     if (loader) {

@@ -1,10 +1,10 @@
 :root {
-    --primary: #c084fc;
-    --secondary: #a78bfa;
-    --accent: #fbbf24;
-    --cyan: #67e8f9;
-    --purple: #a78bfa;
-    --green: #86efac;
+    --primary: #14b8a6;      /* teal */
+    --secondary: #06b6d4;    /* cyan */
+    --accent: #22c55e;       /* green */
+    --cyan: #38bdf8;         /* sky blue */
+    --purple: #0ea5e9;       /* blue */
+    --green: #34d399;        /* emerald */
     --bg-dark: #0f172a;
     --bg-darker: #020617;
     --bg-card: #1e293b;
@@ -13,22 +13,27 @@
     --text-primary: #f1f5f9;
     --text-secondary: #cbd5e1;
     --text-muted: #94a3b8;
-    --gradient-1: linear-gradient(135deg, #c084fc 0%, #a78bfa 50%, #67e8f9 100%);
-    --gradient-2: linear-gradient(135deg, #67e8f9 0%, #a78bfa 50%, #fbbf24 100%);
-    --gradient-3: linear-gradient(135deg, #86efac 0%, #67e8f9 100%);
+
+    --gradient-1: linear-gradient(135deg, #14b8a6 0%, #06b6d4 50%, #38bdf8 100%);
+    --gradient-2: linear-gradient(135deg, #22c55e 0%, #14b8a6 50%, #06b6d4 100%);
+    --gradient-3: linear-gradient(135deg, #34d399 0%, #38bdf8 100%);
+
     --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
     --shadow-md: 0 4px 6px rgba(0,0,0,0.2);
     --shadow-lg: 0 10px 15px rgba(0,0,0,0.3);
     --shadow-xl: 0 20px 25px rgba(0,0,0,0.4);
-    --shadow-glow: 0 0 30px rgba(192,132,252,0.3);
+    --shadow-glow: 0 0 30px rgba(20,184,166,0.3);
+
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 2rem;
     --spacing-lg: 3rem;
     --spacing-xl: 4rem;
+
     --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-smooth: 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
     --font-primary: 'Inter', sans-serif;
     --font-code: 'Fira Code', monospace;
 }

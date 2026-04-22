@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>你的名字 | Personal Homepage</title>
+  <meta name="description" content="个人主页：简介、研究/项目、论文、获奖与联系方式。" />
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --maxw: 980px;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+
+    .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 28px 20px 60px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      background: rgba(247, 248, 251, 0.85);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+    }
+
+    .topbar-inner {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand {
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 14px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 28px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      margin-top: 18px;
+    }
+
+    .avatar {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 18px;
+      object-fit: cover;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, #e0e7ff, #f3f4f6);
+    }
+
+    .name {
+      margin: 0 0 8px;
+      font-size: 34px;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-bottom: 14px;
+      font-size: 16px;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 16px 0 0;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #1d4ed8;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .section {
+      margin-top: 24px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 26px 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .section h2 {
+      margin: 0 0 14px;
+      font-size: 22px;
+    }
+
+    .muted { color: var(--muted); }
+
+    .news-list,
+    .pub-list,
+    .award-list,
+    .project-list {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .news-list li,
+    .pub-list li,
+    .award-list li,
+    .project-list li {
+      margin: 10px 0;
+    }
+
+    .pub-title {
+      font-weight: 600;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #eef2ff;
+      color: #4338ca;
+      font-size: 12px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 24px;
+      padding-bottom: 16px;
+    }
+
+    @media (max-width: 760px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .avatar-wrap {
+        max-width: 220px;
+      }
+      .name {
+        font-size: 28px;
+      }
+      .section {
+        padding: 22px 20px;
+      }
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">你的名字</div>
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#news">News</a>
+        <a href="#projects">Projects</a>
+        <a href="#publications">Publications</a>
+        <a href="#awards">Awards</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="avatar-wrap">
+        <img class="avatar" src="https://via.placeholder.com/600x600.png?text=Your+Photo" alt="Profile Photo" />
+      </div>
+      <div>
+        <h1 class="name">你的名字</h1>
+        <div class="subtitle">
+          职位 / 研究方向 / 学校或公司<br />
+          例如：硕士研究生，研究方向为计算机视觉、长尾学习与噪声标签学习
+        </div>
+        <p>
+          这里写一段 3–5 句的个人简介。建议包括你的研究兴趣、当前所在机构、你正在做的方向，以及你希望与他人合作的主题。
+          如果你不是学术方向，也可以改成个人介绍 + 项目经历 + 技能方向。
+        </p>
+        <div class="links">
+          <a class="chip" href="mailto:your_email@example.com">Email</a>
+          <a class="chip" href="https://github.com/yourname" target="_blank" rel="noopener">GitHub</a>
+          <a class="chip" href="https://scholar.google.com/" target="_blank" rel="noopener">Google Scholar</a>
+          <a class="chip" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="chip" href="#">CV</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <h2>About Me</h2>
+      <p>
+        我目前在 <strong>某某学校 / 某某公司</strong> 学习或工作，主要关注 <strong>研究方向 A、研究方向 B、研究方向 C</strong>。
+        我的兴趣包括长尾学习、噪声标签学习、视觉识别、模型鲁棒性与公平性等。这里也可以补充教育背景、实习经历，或者一两句更个性化的介绍。
+      </p>
+    </section>
+
+    <section class="section" id="news">
+      <h2>Recent News</h2>
+      <ul class="news-list">
+        <li><strong>[2026.04]</strong> 在这里填写最新动态，例如论文被接收、参加会议、加入实验室或发布项目。</li>
+        <li><strong>[2026.02]</strong> 完成某个项目或获得某项奖励。</li>
+        <li><strong>[2025.12]</strong> 发布个人主页初版。</li>
+      </ul>
+    </section>
+
+    <section class="section" id="projects">
+      <h2>Selected Projects</h2>
+      <ul class="project-list">
+        <li>
+          <span class="pub-title">Project Name 1</span>
+          <span class="tag">Open Source</span><br />
+          一句话介绍这个项目解决什么问题、你做了什么、用了哪些技术。 
+          <a href="#">[Code]</a>
+          <a href="#">[Demo]</a>
+        </li>
+        <li>
+          <span class="pub-title">Project Name 2</span><br />
+          可以放课程项目、比赛项目、研究项目或工程作品集。
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" id="publications">
+      <h2>Publications</h2>
+      <ul class="pub-list">
+        <li>
+          <span class="pub-title">Paper Title 1</span><br />
+          Author A, <strong>Your Name</strong>, Author C<br />
+          <em>Conference / Journal, 2026</em>
+          <a href="#">[Paper]</a>
+          <a href="#">[Code]</a>
+          <a href="#">[BibTeX]</a>
+        </li>
+        <li>
+          <span class="pub-title">Paper Title 2</span><br />
+          <strong>Your Name</strong>, Author B<br />
+          <em>Conference / Journal, 2025</em>
+          <a href="#">[Paper]</a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section" id="awards">
+      <h2>Honors & Awards</h2>
+      <ul class="award-list">
+        <li><strong>2025</strong> 某某奖学金 / 比赛奖项 / 荣誉称号</li>
+        <li><strong>2024</strong> 某某竞赛二等奖</li>
+      </ul>
+    </section>
+
+    <section class="section" id="contact">
+      <h2>Contact</h2>
+      <p>
+        Email: <a href="mailto:your_email@example.com">your_email@example.com</a><br />
+        GitHub: <a href="https://github.com/yourname" target="_blank" rel="noopener">github.com/yourname</a><br />
+        Location: City, Country
+      </p>
+      <p class="muted">
+        欢迎就研究合作、项目交流、实习或工作机会与我联系。
+      </p>
+    </section>
+
+    <div class="footer">
+      © 2026 你的名字. Built with GitHub Pages.
+    </div>
+  </main>
+</body>
+</html>
